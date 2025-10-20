@@ -1,4 +1,5 @@
 import { Volume2, MessageSquare, User, Mic } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Index() {
   return (
@@ -26,6 +27,9 @@ export default function Index() {
 
           {/* Controls */}
           <div className="flex items-center gap-1">
+            <Link to="/buttons" className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-colors text-sm font-medium">
+              Button Components
+            </Link>
             <button className="w-[72px] h-14 flex items-center justify-center hover:bg-white/10 rounded-full transition-colors">
               <Volume2 className="w-6 h-6 text-on-surface" />
             </button>
