@@ -1,62 +1,102 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+import { Volume2, MessageSquare, User, Mic } from "lucide-react";
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchDemo();
-  }, []);
-
-  // Example of how to fetch data from the server (if needed)
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
+    <div className="min-h-screen bg-surface-highest flex flex-col">
+      {/* Navigation Bar */}
+      <nav className="mx-4 my-4">
+        <div className="bg-surface rounded-3xl px-7 py-4 flex items-center justify-between">
+          {/* Logo Section */}
+          <div className="flex items-center gap-3">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M46.3401 19.3622C45.4528 17.1964 43.9789 15.3584 42.1206 14.0574C41.196 13.4108 40.173 12.8965 39.0748 12.5458C37.9843 12.1875 36.8188 12.0004 35.6158 12.0004C34.0734 12.0004 32.592 12.3123 31.2384 12.8814C31.1254 12.9277 31.0204 12.9742 30.9154 13.0289C29.6968 13.582 28.5834 14.361 27.6287 15.2883C27.3202 15.5919 27.0272 15.9114 26.7334 16.2697C26.2149 16.8851 25.6809 17.5942 25.1618 18.3108C25.0567 18.4583 24.9437 18.6143 24.8387 18.7628C24.5529 19.1674 21.8224 23.3121 21.3412 24.0521C21.1003 24.4256 20.8147 24.8464 20.5061 25.3059C20.4386 25.4072 20.3638 25.5167 20.2888 25.6254C19.7769 26.3809 19.2054 27.1759 18.6789 27.8773C18.416 28.2272 18.1523 28.5544 17.9268 28.8274C17.6941 29.1075 17.4833 29.3334 17.3327 29.4816C16.6864 30.1123 15.9263 30.6266 15.092 30.9774C14.257 31.3281 13.347 31.5229 12.3841 31.5229C11.7224 31.5229 11.0834 31.4291 10.4819 31.2579C10.1735 31.1721 9.87236 31.0633 9.57928 30.9309C8.28527 30.3694 7.1799 29.4193 6.40511 28.2272C6.0144 27.6277 5.70589 26.9734 5.49517 26.2719C5.29238 25.5705 5.17204 24.8312 5.17204 24.0521C5.17204 23.016 5.37547 22.0421 5.73604 21.1459C6.28541 19.8064 7.2027 18.669 8.35357 17.8587C8.93227 17.4533 9.56383 17.1421 10.241 16.9237C10.9174 16.7054 11.632 16.5815 12.3841 16.5815C13.347 16.589 14.257 16.7762 15.092 17.1262C15.9263 17.4844 16.6864 17.9911 17.3327 18.6218C17.4833 18.7701 17.6941 19.0037 17.9268 19.2767C18.333 19.7674 18.8141 20.3981 19.2958 21.0607C19.4839 21.3255 19.6719 21.5903 19.8598 21.8625C20.5819 20.7724 21.8451 18.8559 22.5068 17.8663C22.3944 17.7103 22.2814 17.5552 22.1689 17.3992C21.8678 17.0012 21.5666 16.6201 21.2663 16.2694C20.9651 15.9111 20.6794 15.5916 20.3709 15.288C19.3333 14.2747 18.1076 13.4493 16.7613 12.881C15.4077 12.312 13.9257 12 12.3841 12C10.7823 12 9.24806 12.3355 7.84969 12.9509C5.75884 13.8623 3.99101 15.3892 2.73506 17.3131C2.11086 18.2717 1.61506 19.3382 1.26913 20.4681C0.930641 21.6056 0.75 22.8054 0.75 24.0523C0.75 25.7115 1.07314 27.3007 1.66002 28.7415C2.54715 30.915 4.02116 32.7463 5.87126 34.0472C6.804 34.6939 7.82707 35.2073 8.925 35.5656C10.0156 35.9164 11.1812 36.1035 12.3842 36.1035C13.9258 36.1035 15.4078 35.7915 16.7614 35.2232C18.1077 34.6541 19.326 33.8287 20.3638 32.8237L20.3711 32.8161C20.6796 32.5202 20.9653 32.1923 21.2664 31.8339C21.7849 31.2186 22.3189 30.5102 22.8381 29.7936C22.9431 29.6453 23.0561 29.4969 23.1611 29.3494C23.4469 28.9361 27.1852 23.2571 27.4929 22.7977C27.5612 22.6965 27.6362 22.5878 27.711 22.4783C28.2229 21.7303 28.7944 20.9278 29.3209 20.2271C29.5838 19.8765 29.8474 19.5493 30.0729 19.2769C30.3058 18.9962 30.5166 18.7702 30.6671 18.622C31.3134 17.9913 32.0736 17.4846 32.9079 17.1264C33.1114 17.0411 33.3141 16.9712 33.5248 16.9004C34.1865 16.6981 34.8857 16.5893 35.6158 16.5817C36.6159 16.5892 37.5636 16.7916 38.4204 17.1735C39.7138 17.7342 40.8199 18.6843 41.5941 19.8765C41.9854 20.4767 42.2938 21.1309 42.504 21.8316C42.7148 22.533 42.8278 23.2731 42.8278 24.0521C42.8278 25.0883 42.6244 26.0698 42.2638 26.9574C41.7144 28.2971 40.7972 29.4429 39.6463 30.2447C39.0675 30.6502 38.436 30.9698 37.7588 31.1798C37.0898 31.398 36.3679 31.5229 35.6158 31.5229C34.6528 31.5229 33.7429 31.3282 32.9077 30.9774C32.0736 30.6268 31.3133 30.1125 30.6669 29.4817C30.5164 29.3334 30.3056 29.0998 30.0729 28.8276C29.6668 28.3446 29.1849 27.7054 28.7038 27.0437C28.5086 26.7788 28.3206 26.5057 28.1325 26.2333C28.0723 26.3269 28.0121 26.4206 27.9444 26.5217C26.7034 28.4068 25.9211 29.5989 25.4929 30.2449C25.6052 30.4007 25.7184 30.5492 25.8308 30.7052C26.1319 31.1021 26.433 31.4841 26.7334 31.8339C27.027 32.1923 27.3202 32.5202 27.6287 32.8161C28.6663 33.8287 29.8922 34.6541 31.2384 35.2232C32.592 35.7915 34.0732 36.1035 35.6156 36.1035C37.2174 36.1035 38.7517 35.7686 40.1426 35.1609C42.2409 34.2418 44.0079 32.715 45.2646 30.7903C45.8882 29.8326 46.3927 28.7728 46.7304 27.6354C47.0693 26.5058 47.25 25.2984 47.25 24.0523C47.25 22.3931 46.9269 20.8039 46.3401 19.3622Z" fill="#E2E2E9"/>
+            </svg>
+            <div className="w-px h-6 bg-outline"></div>
+            <svg width="84" height="27" viewBox="0 0 84 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clipPath="url(#clip0_1070_111213)">
+                <path d="M80.417 8.51478L77.8507 15.6233L75.2618 8.51478H71.5976L76.074 19.5074L75.745 20.2105C75.4593 20.8027 75.0211 21.0434 74.538 21.0434C74.0549 21.0434 73.5509 20.8252 73.2219 20.4962L71.9924 22.995C72.7821 23.6964 74.0116 24.1345 75.0644 24.1345C76.6212 24.1345 78.0256 23.1267 78.6629 21.5041L83.993 8.51478H80.417ZM52.918 19.5958H49.427C48.8347 19.5958 48.4174 19.2667 48.4174 18.7611C48.4174 18.4303 48.5923 18.1221 48.9213 17.9039C49.4495 18.0563 49.9984 18.1221 50.5681 18.1221C53.5968 18.1221 55.8775 16.0181 55.8775 13.1868C55.8775 12.1115 55.5484 11.1677 54.9995 10.378C55.1103 9.96071 55.5259 9.6975 56.0524 9.6975H56.842V6.73805H55.9C54.364 6.73805 53.247 7.50519 52.918 8.71044C52.2149 8.42644 51.4253 8.25154 50.5681 8.25154C47.5394 8.25154 45.2813 10.3555 45.2813 13.1868C45.2813 14.5704 45.8303 15.7999 46.7498 16.6762C45.8078 17.2459 45.2155 18.3871 45.2155 19.5733C45.2155 21.4365 46.6407 22.6868 48.8122 22.6868H52.3033C53.202 22.6868 53.8168 23.1699 53.9034 23.8938L57.1935 22.9933C56.7762 20.846 55.1761 19.5958 52.918 19.5958ZM6.41209 19.9663C9.79233 19.9663 12.402 18.0805 12.402 15.2943C12.402 11.7616 8.16975 10.7071 6.82943 10.4213C5.44755 10.1373 4.06393 9.67499 4.06393 8.68793C4.06393 7.89828 5.03021 7.32683 6.39131 7.32683C7.81822 7.32683 9.31093 7.91906 10.1872 8.75373L11.7665 6.16489C10.6478 5.09124 8.73947 4.3016 6.41209 4.3016C2.92275 4.3016 0.578074 6.09908 0.578074 8.81955C0.578074 11.4967 2.83619 12.9236 5.86316 13.6492C7.4667 14.044 8.9161 14.3956 8.9161 15.4484C8.9161 16.3489 7.75241 16.9411 6.39131 16.9411C4.78777 16.9411 2.96778 16.1515 1.74003 15.0085L-0.0141602 17.5991C1.5634 19.0226 4.06395 19.9664 6.41211 19.9664L6.41209 19.9663ZM40.0378 8.51478V9.63344C39.1806 8.75548 38.0169 8.25156 36.6558 8.25156C33.5838 8.25156 31.2599 10.7729 31.2599 14.1081C31.2599 17.445 33.5839 19.9664 36.6558 19.9664C38.0169 19.9664 39.1806 19.4624 40.0378 18.5845V19.7031H43.2379V8.51476L40.0378 8.51478ZM58.184 19.7031H61.3842V8.51478H58.184V19.7031ZM69.5698 6.55971C70.0963 6.55971 70.5569 6.69132 70.9742 6.95453V4.1267C70.337 3.79768 69.6789 3.64356 68.846 3.64356C66.1047 3.64356 64.8977 5.30943 64.8977 7.68011V8.51478H63.2094V11.4309H64.8977V19.7031H68.0996V11.4309H70.7543V8.51476H68.0996V7.90001C68.0996 7.04283 68.5828 6.55971 69.5698 6.55971ZM27.6165 8.51478L25.554 15.5575L23.4466 8.51478H20.1997L18.094 15.535L16.0316 8.51478H12.4556L16.3831 19.7031H19.6733L21.7807 12.4855L23.8865 19.7031H27.1767L31.1041 8.51478H27.6165ZM37.2931 16.8753C35.7346 16.8753 34.5709 15.6891 34.5709 14.1081C34.5709 12.5288 35.7346 11.3426 37.2931 11.3426C38.8741 11.3426 40.0378 12.5288 40.0378 14.1081C40.0378 15.6891 38.8741 16.8753 37.2931 16.8753ZM50.5681 11.2768C51.711 11.2768 52.589 12.0889 52.589 13.1868C52.589 14.2847 51.711 15.0969 50.5681 15.0969C49.427 15.0969 48.5698 14.2847 48.5698 13.1868C48.5698 12.0889 49.4044 11.2768 50.5681 11.2768ZM59.7841 7.0861C60.9253 7.0861 61.779 6.25318 61.779 5.11201C61.779 3.99334 60.9253 3.1604 59.7841 3.1604C58.6654 3.1604 57.8117 3.99334 57.8117 5.11201C57.8117 6.25318 58.6654 7.08612 59.7841 7.08612V7.0861Z" fill="#E2E2E9"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_1070_111213">
+                  <rect width="84" height="26.6224" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center gap-1">
+            <button className="w-[72px] h-14 flex items-center justify-center hover:bg-white/10 rounded-full transition-colors">
+              <Volume2 className="w-6 h-6 text-on-surface" />
+            </button>
+            <button className="w-[72px] h-14 flex items-center justify-center bg-white/12 rounded-full transition-colors">
+              <MessageSquare className="w-6 h-6 text-on-surface" />
+            </button>
+            <button className="w-[72px] h-14 flex items-center justify-center hover:bg-white/10 rounded-full transition-colors">
+              <User className="w-6 h-6 text-on-surface" />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="flex-1 flex gap-4 px-4 pb-4">
+        {/* Main Image */}
+        <div className="flex-1 rounded-2xl overflow-hidden">
+          <img 
+            src="https://api.builder.io/api/v1/image/assets/TEMP/bae18baad186e254daec5ad98f3be7cb60aa5fea?width=1672" 
+            alt="Main" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Chat Section */}
+        <div className="w-full max-w-[556px] bg-surface-low rounded-2xl flex flex-col">
+          {/* Chat Header */}
+          <div className="bg-surface-lowest rounded-2xl p-2 flex items-center gap-3">
+            <img 
+              src="https://api.builder.io/api/v1/image/assets/TEMP/1569d233179b17407690579f8e57c9f60baa6823?width=132" 
+              alt="Zee"
+              className="w-[66px] h-[66px] rounded-full"
             />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 hidden max-w-md">{exampleFromServer}</p>
-      </div>
+            <div>
+              <div className="text-on-surface font-normal text-base leading-6 tracking-[0.5px]">Zee</div>
+              <div className="text-on-surface font-normal text-sm leading-5 tracking-[0.25px]">Your Zooly AI Assistant</div>
+            </div>
+          </div>
+
+          {/* Chat Messages */}
+          <div className="flex-1 px-4 pt-6 pb-4 overflow-y-auto">
+            <div className="flex flex-col items-start gap-3">
+              <div className="max-w-[484px] bg-secondary-container rounded-lg rounded-tl-lg px-3 py-2.5">
+                <p className="text-on-secondary-container font-normal text-base leading-6 tracking-[0.5px]">
+                  🎶 Sure thing!  'Sorry' was written during a tough time when I was trying to rebuild trust and show I'm learning from past mistakes.
+                  <br /><br />
+                  The beat is super infectious, but the lyrics come straight from the heart about asking for forgiveness and taking responsibility.
+                  <br /><br />
+                  It became one of my biggest hits and really connected with millions of people around the world 🌍.
+                  <br /><br />
+                  Would you like me to play a snippet of the song or suggest similar ones?"
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Chat Input */}
+          <div className="px-6 pb-6">
+            <div className="flex items-center gap-2 bg-surface-lowest rounded-[28px] border-4 border-primary-container h-12 px-5">
+              <input 
+                type="text" 
+                placeholder="Ask zooly"
+                className="flex-1 bg-transparent text-on-surface-variant font-normal text-base leading-6 tracking-[0.5px] opacity-48 outline-none placeholder:text-on-surface-variant"
+              />
+              <button className="flex-shrink-0 w-12 h-12 flex items-center justify-center -mr-5">
+                <Mic className="w-6 h-6 text-primary" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
